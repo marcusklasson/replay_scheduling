@@ -1,0 +1,41 @@
+data:
+  name: CIFAR100
+  data_dir: ./datasets
+  n_tasks: 20
+  n_classes: 100
+  img_size: 32
+  in_channel: 3
+  pc_valid: 0.15
+model:
+  net: convnet
+training:
+  method: rs
+  extension: hal
+  scenario: task
+  optimizer: sgd
+  reset_optimizer: False
+  lr: 0.03
+  batch_size: 256
+  n_epochs: 25
+  out_dir: ./experiment/CIFAR100/hal
+  print_every: 10
+  save_every: -1
+  model_file: model.pth.tar
+replay:
+  sample_selection: uniform 
+  examples_per_class: 1
+  memory_limit: 100
+  val_threshold: 0.5
+  beta: 0.5
+  gamma: 0.1
+  hal_lambda: 1.0
+search:
+  method: mcts
+  iters: 100
+  c_param: 0.1
+  action_space: seen_tasks
+session:
+  seed: 1
+  verbose: 0
+  keep_checkpoints: no 
+  load_checkpoints: yes

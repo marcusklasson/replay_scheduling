@@ -1,0 +1,33 @@
+data:
+  name: notMNIST
+  data_dir: ./datasets
+  n_tasks: 5
+  n_classes: 10
+  img_size: 28
+  in_channel: 1
+  pc_valid: 0.15
+model:
+  net: mlp256
+  n_layers: 2
+training:
+  method: agem
+  extension: none
+  scenario: task
+  optimizer: adam
+  reset_optimizer: False
+  lr: 0.001
+  batch_size: 128
+  n_epochs: 50
+  out_dir: ./experiment_tiny_memory/notMNIST/agem
+  print_every: 10
+  save_every: -1
+  model_file: model.pth.tar
+replay:
+  sample_selection: ring_buffer 
+  examples_per_class: 1
+  memory_limit: 10
+session:
+  seed: 1
+  verbose: 0
+  keep_checkpoints: no 
+  load_checkpoints: yes

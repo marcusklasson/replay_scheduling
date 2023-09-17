@@ -1,0 +1,27 @@
+data:
+  data_dir: datasets
+  shuffle_labels: no
+training:
+  optimizer: adam
+  kwargs:
+    reset: False
+  lr: 0.001
+  batch_size: 128
+  nworkers: 1
+  pin_memory: True
+  out_dir: output/default
+  monitoring: none
+  print_every: 200
+  save_every: -1
+  model_file: model.pth.tar
+replay:
+  method: none
+  balance_classes: yes
+  use_full_dataset: no
+test:
+  batch_size: 128
+  model_file: model.pth.tar
+session:
+  n_runs: 5
+  seed: 0
+  device: cuda:0

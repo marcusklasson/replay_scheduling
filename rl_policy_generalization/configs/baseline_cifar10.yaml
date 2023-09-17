@@ -1,0 +1,56 @@
+
+data_dir: "./datasets"
+checkpoint_dir: "./experiments/CIFAR10_baselines/checkpoint"
+log_dir: "./experiments/CIFAR10_baselines/logs"
+#out_dir: "./experiments"
+monitoring: "none"
+verbose: 0 # the verbosity level: 0 no output, 1 info, 2 debug
+
+session:
+  keep_checkpoints: False
+
+n_envs: 10
+seed: 0 # start seed for envs
+num_workers: 1
+pin_memory: True
+device: "cuda:0"
+
+data:
+  name: "CIFAR10"
+  data_dir: "./datasets"
+  n_tasks: 5
+  n_classes: 10
+  classes_per_task: 2
+  img_size: 32
+  in_channel: 3
+  pc_valid: 0.15
+  shuffle_labels: True
+  seed: 1
+
+### Continual learning 
+cl_scenario: "task"
+n_tasks: 5
+classes_per_task: 2
+#baseline_policy: "random" # [ets, random, heuristic1, heuristic2, heuristic3]
+#random_policy_seed: 1
+#n_runs_random_policy: 3
+action_space: "none"
+
+cl:
+  lr: 0.001
+  optimizer: "adam" 
+  net: "mlp" 
+  n_layers: 2
+  units: 256
+  n_classes: 10
+  batch_size: 256 
+  n_epochs: 20
+  multi_head: False
+  print_every: 20
+  seed: 1
+
+replay:
+  memory_size: 10
+  examples_per_class: 5
+  sample_selection: "uniform"
+  tau: 0.999 # used in heuristics

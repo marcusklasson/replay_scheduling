@@ -1,0 +1,37 @@
+data:
+  name: FashionMNIST
+  data_dir: ./datasets
+  n_tasks: 5
+  n_classes: 10
+  img_size: 28
+  in_channel: 1
+  pc_valid: 0.15
+model:
+  net: mlp256
+  n_layers: 2
+training:
+  method: rs
+  extension: coreset
+  scenario: task
+  optimizer: adam
+  reset_optimizer: False
+  lr: 0.001
+  batch_size: 128
+  n_epochs: 30
+  out_dir: ./experiment/FashionMNIST/bfs
+  print_every: 10
+  save_every: -1
+  model_file: model.pth.tar
+replay:
+  sample_selection: uniform 
+  examples_per_class: 1
+  memory_limit: 10
+search:
+  method: bfs
+  action_space: seen_tasks
+session:
+  n_runs: 5
+  seed: 1
+  verbose: 0
+  keep_checkpoints: no 
+  load_checkpoints: yes

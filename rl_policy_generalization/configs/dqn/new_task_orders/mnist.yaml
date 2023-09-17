@@ -1,0 +1,126 @@
+
+#
+log_dir: "./experiments/new_task_orders/mnist/dqn"
+checkpoint_dir: "./experiments/new_task_orders/mnist/dqn"
+table_dir: "./transition_tables_shuffled/MNIST/M10" 
+monitoring: "none"
+verbose: 0 # the verbosity level: 0 no output, 1 info, 2 debug
+load_checkpoints: True
+use_table_env: True
+session:
+  keep_checkpoints: False
+  save_checkpoints: False
+
+n_train_envs: 30 
+seed_start_train: 0
+n_valid_envs: 10 
+seed_start_valid: 10
+
+n_runs: 5
+seed: 1
+num_workers: 1
+pin_memory: True
+device: "cuda:0"
+
+### Continual learning 
+cl_scenario: "task" 
+n_tasks: 5
+classes_per_task: 2
+action_space: "none" 
+
+data:
+  name: "MNIST" 
+  data_dir: "./datasets"
+  n_tasks: 5 
+  n_classes: 10 
+  classes_per_task: 2
+  img_size: 28
+  in_channel: 1
+  pc_valid: 0.15
+  shuffle_labels: True 
+  seed: 1
+
+cl:
+  lr: 0.001
+  optimizer: "adam" 
+  net: "mlp"
+  n_layers: 2
+  units: 256
+  n_classes: 10
+  batch_size: 128
+  n_epochs: 10
+  print_every: 1
+  multi_head: False
+  seed: 1
+
+replay:
+  memory_size: 10
+  examples_per_class: 5
+  sample_selection: "uniform"
+
+# DQN
+dqn:
+  lr: 0.0001
+  optimizer: "adam"  # options: [rmsprop, adam]
+  n_layers: 2
+  units: 512
+  hidden_dim: 512
+  policy_net: "mlp"
+  batch_size: 32
+  loss: "huber" # options: [mse, huber]
+  out_activation: "linear"
+  n_batch_updates: 1
+  opt_eps: 0.0001
+  orthogonal_init: False 
+  activation: "relu"
+  max_grad_norm: 1.0 
+  seed: 1
+
+  # 
+  lr_scheduler: "none"
+  base_lr: 0.0001
+  max_lr: 0.0003
+  cyclic_lr_mode: "triangular"
+  step_size_up: 20 #2000
+
+  #
+  checkpoint_dir: "./exp/checkpoints"
+  save_checkpoint: True
+
+state_add_delta: False
+state_add_delta_max: False
+state_add_time: False
+state_add_forgetting: False
+state_add_bwt: False
+reward_type: 'dense'
+reward_calc: 'last'
+reward_penalty: 'none' # [avg_forgetting, total_forgetting]
+forgetting_calc: 'bwt' # ['max', 'bwt', 'last']
+
+n_episodes: 10000
+buffer_size: 10000
+# PER
+prioritized_er: False
+prioritized_replay_alpha: 0.6
+prioritized_replay_beta0: 0.4
+prioritized_replay_eps: 1.e-6
+# Double DQN
+double_dqn: False
+
+
+exploration_start_eps: 1.0
+exploration_final_eps: 0.02 
+exploration_fraction: 0.25 
+eps_schedule: "linear" 
+gamma: 1.0 # discount factor
+
+start_learning: "batch_size_full" # options: [batch_size_full, buffer_full, after_episode]
+start_learning_min_random_exp: 100
+target_update_freq: 500
+
+print_freq: 100
+log_freq: 100
+eval_freq: 100
+plot_freq: 1000
+checkpoint_freq: 1000
+save_interval: 1000

@@ -1,0 +1,32 @@
+data:
+  name: miniImagenet
+  data_dir: ./datasets
+  n_tasks: 20
+  n_classes: 100
+  img_size: 84
+  in_channel: 3
+  pc_valid: 0.15
+model:
+  net: resnet18
+training:
+  method: agem
+  extension: none
+  scenario: task
+  optimizer: adam
+  reset_optimizer: False
+  lr: 0.001
+  batch_size: 32
+  n_epochs: 1
+  out_dir: ./experiment_tiny_memory/miniImagenet/agem
+  print_every: 10
+  save_every: -1
+  model_file: model.pth.tar
+replay:
+  sample_selection: ring_buffer 
+  examples_per_class: 1
+  memory_limit: 100
+session:
+  seed: 1
+  verbose: 0
+  keep_checkpoints: no 
+  load_checkpoints: yes

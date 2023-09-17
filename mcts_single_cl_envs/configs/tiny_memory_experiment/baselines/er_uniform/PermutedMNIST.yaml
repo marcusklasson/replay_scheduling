@@ -1,0 +1,33 @@
+data:
+  name: PermutedMNIST
+  data_dir: ./datasets
+  n_tasks: 10
+  n_classes: 10
+  img_size: 28
+  in_channel: 1
+  pc_valid: 0.15
+model:
+  net: mlp256
+  n_layers: 2
+training:
+  method: er
+  extension: none
+  scenario: domain
+  optimizer: adam
+  reset_optimizer: False
+  lr: 0.001
+  batch_size: 128
+  n_epochs: 20
+  out_dir: ./experiment_tiny_memory/PermutedMNIST/er_uniform
+  print_every: 10
+  save_every: -1
+  model_file: model.pth.tar
+replay:
+  sample_selection: uniform 
+  examples_per_class: 1
+  memory_limit: 100
+session:
+  seed: 1
+  verbose: 0
+  keep_checkpoints: no 
+  load_checkpoints: yes

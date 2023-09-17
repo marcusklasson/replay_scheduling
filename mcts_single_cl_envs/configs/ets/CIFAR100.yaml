@@ -1,0 +1,36 @@
+data:
+  name: CIFAR100
+  data_dir: ./datasets
+  n_tasks: 20
+  n_classes: 100
+  img_size: 32
+  in_channel: 3
+  pc_valid: 0.0
+model:
+  net: convnet
+training:
+  method: rs
+  extension: coreset
+  scenario: task
+  optimizer: adam
+  reset_optimizer: False
+  lr: 0.001
+  batch_size: 256
+  n_epochs: 25
+  out_dir: ./experiment/CIFAR100/ets
+  print_every: 10
+  save_every: -1
+  model_file: model.pth.tar
+replay:
+  schedule: ets
+  sample_selection: uniform 
+  examples_per_class: 1
+  memory_limit: 100
+search:
+  action_space: seen_tasks
+session:
+  n_runs: 5
+  seed: 1
+  verbose: 0
+  keep_checkpoints: no 
+  load_checkpoints: yes

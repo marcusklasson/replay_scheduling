@@ -1,0 +1,104 @@
+
+
+n_runs: 5
+seed: 1
+num_workers: 1
+pin_memory: True
+device: "cuda:0"
+
+# 
+log_dir: "./experiments/new_dataset/notmnist/a2c"
+checkpoint_dir: "./experiments/new_dataset/notmnist/a2c"
+table_dir: "./transition_tables_new_dataset/M10/mnist_fashionmnist_10envs_notmnist_10envs" 
+output: ""
+monitoring: "none"
+verbose: 1 # the verbosity level: 0 no output, 1 info, 2 debug
+load_checkpoints: True
+use_table_env: True
+session:
+  keep_checkpoints: False
+  save_checkpoints: False
+
+n_train_envs: 10
+seed_start_train: 0
+n_valid_envs: 10 
+seed_start_valid: 0
+
+# training details
+algo: 'a2c'
+n_episodes: 100000
+
+# hyperparameters
+n_processes: 1
+discount: 1.0
+
+# ppo hyperparams
+a2c:
+  n_steps: 5
+  lr: 0.0001
+
+  seed: 1
+  checkpoint_dir: "./experiments/new_dataset/notmnist/a2c"
+
+gae_lambda: 0.95
+use_gae: True
+use_proper_time_limits: False
+
+# loss
+entropy_coef: 0.01
+value_loss_coef: 0.5
+max_grad_norm: 0.5
+
+actor_critic:
+  hidden_dim: 64
+  n_layers: 2
+  activation: 'tanh'
+
+# env
+state_add_delta: False
+state_add_delta_max: False
+state_add_time: False
+state_add_forgetting: False
+state_add_bwt: False
+reward_type: 'dense'
+reward_calc: 'last'
+reward_penalty: 'none' # [avg_forgetting, total_forgetting]
+forgetting_calc: 'bwt' # ['max', 'bwt', 'last']
+
+### Continual learning 
+cl_scenario: "task" 
+n_tasks: 5
+classes_per_task: 2
+action_space: "none" 
+
+data:
+  name: "notMNIST" 
+  data_dir: "./datasets"
+  n_tasks: 5 
+  n_classes: 10 
+  classes_per_task: 2
+  img_size: 28
+  in_channel: 1
+  pc_valid: 0.15
+  shuffle_labels: True 
+  seed: 1
+
+cl:
+  lr: 0.001
+  optimizer: "adam" 
+  net: "mlp"
+  n_layers: 2
+  units: 256
+  n_classes: 10
+  batch_size: 128
+  n_epochs: 10
+  print_every: 1
+  multi_head: False
+  seed: 1
+
+print_freq: 100
+log_freq: 100
+eval_freq: 100
+plot_freq: 1000
+checkpoint_freq: 1000
+save_interval: 1000
