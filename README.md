@@ -1,6 +1,10 @@
-# Replay Scheduling in Continual Learning  
+# Learn the Time to Learn: Replay Scheduling in Continual Learning  
 
-This repository includes code in PyTorch for the paper **"Learn the Time to Learn: Replay Scheduling in Continual Learning"**.
+[Marcus Klasson](https://marcusklasson.github.io/), [Hedvig Kjellström](https://www.kth.se/profile/hedvig), [Cheng Zhang](https://cheng-zhang.org/)
+
+arxiv preprint: [https://arxiv.org/abs/2209.08660](https://arxiv.org/abs/2209.08660)
+
+This repository includes Pytorch code for all experiments in the paper. 
 
 ## Installation
 
