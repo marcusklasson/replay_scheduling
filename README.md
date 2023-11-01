@@ -2,7 +2,10 @@
 
 [Marcus Klasson](https://marcusklasson.github.io/), [Hedvig Kjellström](https://www.kth.se/profile/hedvig), [Cheng Zhang](https://cheng-zhang.org/)
 
-arxiv preprint: [https://arxiv.org/abs/2209.08660](https://arxiv.org/abs/2209.08660)
+Accepted to Transactions on Machine Learning Research (TMLR) in 09/2023.
+
+Openreview: [https://openreview.net/forum?id=Q4aAITDgdP](https://openreview.net/forum?id=Q4aAITDgdP)
+arxiv preprint (old version): [https://arxiv.org/abs/2209.08660](https://arxiv.org/abs/2209.08660)
 
 This repository includes Pytorch code for all experiments in the paper. 
 
