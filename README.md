@@ -27,3 +27,18 @@ conda activate rs_in_cl
 ```
 
 Entering the directories ```mcts_single_cl_envs/``` and ```rl_policy_generalization/``` to see code used in Section 4.1 and 4.2 respectively.
+
+## Citation
+If you find this work useful in your research, please cite our paper: 
+
+```
+@article{klasson2023learn,
+    title={Learn the Time to Learn: Replay Scheduling in Continual Learning},
+    author={Marcus Klasson and Hedvig Kjellstr{\"o}m and Cheng Zhang},
+    journal={Transactions on Machine Learning Research},
+    issn={2835-8856},
+    year={2023},
+    url={https://openreview.net/forum?id=Q4aAITDgdP},
+    note={}
+}
+```
