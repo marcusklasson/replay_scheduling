@@ -8,7 +8,7 @@ This repository includes Pytorch code for all experiments in the paper.
 
 Openreview: [https://openreview.net/forum?id=Q4aAITDgdP](https://openreview.net/forum?id=Q4aAITDgdP)
 
-arxiv preprint (old version): [https://arxiv.org/abs/2209.08660](https://arxiv.org/abs/2209.08660)
+Arxiv: [https://arxiv.org/abs/2209.08660](https://arxiv.org/abs/2209.08660)
 
 
 
